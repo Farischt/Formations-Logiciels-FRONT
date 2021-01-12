@@ -84,7 +84,7 @@ const WishList = () => {
                 <ProductCard product={product} key={product._id} />
 
                 <button
-                  className="btn btn-danger btn-block"
+                  className="btn btn-danger btn-block "
                   onClick={() => handleRemoveFromWishList(product._id)}
                 >
                   {" "}
