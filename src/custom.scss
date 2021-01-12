@@ -1,0 +1,14 @@
+// $theme-colors: (
+//   "custon-color": rgb(145, 24, 114),
+// );
+
+// $custom-color: red;
+
+$theme-colors: (
+  "main": #000c18,
+  // "main": rgb(0, 0, 0),
+  "second": #00152a,
+  "golden": gold,
+);
+
+@import "~bootstrap/scss/bootstrap.scss";
