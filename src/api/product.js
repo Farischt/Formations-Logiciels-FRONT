@@ -12,6 +12,13 @@ export const removeProduct = async (slug) => {
   return await axios.delete(`${process.env.REACT_APP_API_URL}/product/${slug}`)
 }
 
+export const updateProduct = async (slug, newProduct) => {
+  return await axios.put(
+    `${process.env.REACT_APP_API_URL}/product/${slug}`,
+    newProduct
+  )
+}
+
 export const listSpecificProducts = async (sort, order, limit) => {
   return await axios.post(`${process.env.REACT_APP_API_URL}/products`, {
     sort,
