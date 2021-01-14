@@ -1,14 +1,16 @@
 import React, { useState } from "react"
-// import { toast } from "react-toastify";
+import { updateProduct } from "../../../api/product"
+import { toast } from "react-toastify"
 import Spinner from "react-bootstrap/Spinner"
+import FileUpload from "./FileUpload"
 
-const ProductUpdateForm = ({ product }) => {
+const ProductUpdateForm = ({ product, fetchProducts }) => {
   const initialState = {
     name: product.name,
     description: product.description,
     price: product.price,
     quantity: product.quantity,
-    category: product.category.name,
+    // category: product.category.name,
     images: product.images,
   }
 
@@ -22,9 +24,25 @@ const ProductUpdateForm = ({ product }) => {
     setNewProduct({ ...newProduct, [e.target.name]: e.target.value })
   }
 
+  const handleUpdateProduct = async () => {
+    setLoading(true)
+    try {
+      const response = await updateProduct(product.slug, newProduct)
+      if (response.data) {
+        fetchProducts()
+      }
+      setLoading(false)
+    } catch (err) {
+      setLoading(false)
+      console.log(err)
+      toast.error(err.message)
+    }
+  }
+
   return (
     <>
       <div className="form">
+        <label htmlFor="1"> Nom </label>
         <input
           onChange={(e) => handleChange(e)}
           className="form-control my-2"
@@ -34,8 +52,9 @@ const ProductUpdateForm = ({ product }) => {
           placeholder="Nom du produit"
           autoFocus
           required
+          id="1"
         />
-
+        <label> Description </label>
         <input
           onChange={handleChange}
           className="form-control my-2"
@@ -45,7 +64,7 @@ const ProductUpdateForm = ({ product }) => {
           placeholder="Description du produit"
           required
         />
-
+        <label> Prix </label>
         <input
           onChange={handleChange}
           className="form-control my-2"
@@ -56,6 +75,7 @@ const ProductUpdateForm = ({ product }) => {
           required
         />
 
+        <label> Quantité </label>
         <input
           onChange={handleChange}
           className="form-control my-2"
@@ -65,7 +85,12 @@ const ProductUpdateForm = ({ product }) => {
           placeholder="Quantité du produit"
           required
         />
-        <button className="btn btn-outline-info my-2 my-sm-0">
+        <label> Images </label>
+        <FileUpload product={newProduct} setProduct={setNewProduct} />
+        <button
+          className="btn btn-outline-info my-2 my-sm-0"
+          onClick={handleUpdateProduct}
+        >
           {loading ? (
             <Spinner animation="border" variant="info" />
           ) : (

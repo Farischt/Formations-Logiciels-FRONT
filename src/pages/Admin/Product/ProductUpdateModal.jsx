@@ -1,9 +1,9 @@
-import React from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import ProductUpdateForm from "./ProductUpdateForm";
+import React from "react"
+import Button from "react-bootstrap/Button"
+import Modal from "react-bootstrap/Modal"
+import ProductUpdateForm from "./ProductUpdateForm"
 
-const ProductUpdateModal = ({ product, ...props }) => {
+const ProductUpdateModal = ({ product, fetchProducts, ...props }) => {
   return (
     <Modal
       {...props}
@@ -17,13 +17,13 @@ const ProductUpdateModal = ({ product, ...props }) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <ProductUpdateForm product={product} />
+        <ProductUpdateForm product={product} fetchProducts={fetchProducts} />
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}> Fermer </Button>
       </Modal.Footer>
     </Modal>
-  );
-};
+  )
+}
 
-export default ProductUpdateModal;
+export default ProductUpdateModal

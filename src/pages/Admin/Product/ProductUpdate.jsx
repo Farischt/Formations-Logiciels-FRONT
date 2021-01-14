@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { EditOutlined } from "@ant-design/icons";
-import ProductUpdateModal from "./ProductUpdateModal";
+import React, { useState } from "react"
+import { EditOutlined } from "@ant-design/icons"
+import ProductUpdateModal from "./ProductUpdateModal"
 
-const ProductUpdate = ({ product }) => {
-  const [modalShow, setModalShow] = useState(false);
+const ProductUpdate = ({ product, fetchProducts }) => {
+  const [modalShow, setModalShow] = useState(false)
 
   return (
     <>
@@ -17,9 +17,10 @@ const ProductUpdate = ({ product }) => {
         show={modalShow}
         onHide={() => setModalShow(false)}
         product={product}
+        fetchProducts={fetchProducts}
       />
     </>
-  );
-};
+  )
+}
 
-export default ProductUpdate;
+export default ProductUpdate

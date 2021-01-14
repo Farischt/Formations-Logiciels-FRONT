@@ -1,9 +1,9 @@
-import React from "react";
-import Spinner from "react-bootstrap/Spinner";
-import Card from "react-bootstrap/Card";
-import CardColumns from "react-bootstrap/CardColumns";
-import ProductRemove from "./ProductRemove";
-import ProductUpdate from "./ProductUpdate";
+import React from "react"
+import Spinner from "react-bootstrap/Spinner"
+import Card from "react-bootstrap/Card"
+import CardColumns from "react-bootstrap/CardColumns"
+import ProductRemove from "./ProductRemove"
+import ProductUpdate from "./ProductUpdate"
 
 const ProductList = ({ products, productsLoading, fetchProducts }) => {
   return (
@@ -37,17 +37,20 @@ const ProductList = ({ products, productsLoading, fetchProducts }) => {
                     slug={product.slug}
                     fetchProducts={fetchProducts}
                   />
-                  <ProductUpdate product={product} />
+                  <ProductUpdate
+                    product={product}
+                    fetchProducts={fetchProducts}
+                  />
                 </Card.Footer>
               </Card>
-            );
+            )
           })}
         </CardColumns>
       ) : (
         <h3> Aucun produit disponible </h3>
       )}
     </>
-  );
-};
+  )
+}
 
-export default ProductList;
+export default ProductList
